@@ -9,17 +9,15 @@ const ProductCard = ({ product, onAddToCart, onCheckStock, onOpenDetail }) => {
   return (
     <div className="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col h-full relative">
       {/* Detail Button Overlay */}
-      <button 
+      <button
         onClick={() => onOpenDetail(product)}
-        className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-primary"
-      >
+        className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-primary">
         <Info size={18} />
       </button>
 
-      <div 
+      <div
         className="h-72 overflow-hidden cursor-pointer"
-        onClick={() => onOpenDetail(product)}
-      >
+        onClick={() => onOpenDetail(product)}>
         <img
           src={product.images ? product.images[0] : ""}
           alt={product.name}
@@ -27,10 +25,9 @@ const ProductCard = ({ product, onAddToCart, onCheckStock, onOpenDetail }) => {
         />
       </div>
       <div className="p-5 flex flex-col flex-grow">
-        <h3 
+        <h3
           className="text-lg font-bold text-gray-800 mb-1 cursor-pointer hover:text-primary transition-colors"
-          onClick={() => onOpenDetail(product)}
-        >
+          onClick={() => onOpenDetail(product)}>
           {product.name}
         </h3>
         <p className="text-sm text-gray-500 mb-4 flex-grow">

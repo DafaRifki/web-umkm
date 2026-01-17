@@ -30,6 +30,11 @@ const ProductCard = ({ product, onAddToCart, onCheckStock, onOpenDetail }) => {
           onClick={() => onOpenDetail(product)}>
           {product.name}
         </h3>
+        {product.tagline && (
+          <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-bold mb-2">
+            {product.tagline}
+          </p>
+        )}
         <p className="text-sm text-gray-500 mb-4 flex-grow">
           {product.description}
         </p>

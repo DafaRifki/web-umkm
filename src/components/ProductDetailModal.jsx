@@ -109,8 +109,13 @@ const ProductDetailModal = ({ isOpen, onClose, product, onAddToCart, onCheckStoc
             <h3 className="flex items-center gap-2 text-xs md:text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">
               <Info size={16} /> Deskripsi Produk
             </h3>
-            <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-              {product.description}
+            {product.tagline && (
+              <p className="text-primary font-bold text-xs uppercase tracking-wider mb-2">
+                {product.tagline}
+              </p>
+            )}
+            <p className="text-gray-600 leading-relaxed text-sm md:text-base whitespace-pre-wrap text-justify">
+              {product.fullDescription || product.description}
             </p>
           </div>
 

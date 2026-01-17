@@ -222,7 +222,7 @@ function App() {
         </div>
 
         {/* Coming Soon Section */}
-        <section className="mt-24">
+        <section id="coming-soon" className="mt-24">
           <div className="flex items-center justify-center gap-3 mb-12">
             <div className="h-px bg-gray-300 w-12 hidden md:block"></div>
             <h2 className="text-3xl font-bold text-center text-gray-800">

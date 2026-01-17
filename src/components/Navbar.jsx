@@ -8,7 +8,7 @@ const Navbar = ({ cartCount, onToggleCart }) => {
         <a
           href="#"
           className="text-2xl font-bold text-primary flex items-center gap-2">
-          <img src="/src/assets/logo.webp" alt="logo-brand" className="w-16 h-auto" />
+          <img src="/assets/logo.webp" alt="logo-brand" className="w-16 h-auto" />
           <span>SEGENSREICH</span>
         </a>
         <button

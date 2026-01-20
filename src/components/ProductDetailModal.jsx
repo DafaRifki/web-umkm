@@ -7,14 +7,34 @@ const ProductDetailModal = ({ isOpen, onClose, product, onAddToCart, onCheckStoc
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const sizes = ["S", "M", "L", "XL"];
 
+  const productImages = React.useMemo(() => {
+    if (!product) return [];
+    return product.images || [product.image];
+  }, [product]);
+
   // Reset image index when product changes or modal opens
   React.useEffect(() => {
     if (isOpen) setActiveImageIndex(0);
   }, [isOpen, product]);
 
-  if (!isOpen || !product) return null;
+  // Handle keyboard navigation
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!isOpen || !productImages || productImages.length <= 1) return;
+      if (e.key === "ArrowLeft") {
+        setActiveImageIndex((prev) => (prev === 0 ? productImages.length - 1 : prev - 1));
+      } else if (e.key === "ArrowRight") {
+        setActiveImageIndex((prev) => (prev === productImages.length - 1 ? 0 : prev + 1));
+      } else if (e.key === "Escape") {
+        onClose();
+      }
+    };
 
-  const productImages = product.images || [product.image];
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, productImages, onClose]);
+
+  if (!isOpen || !product) return null;
 
   return (
     <div
@@ -32,12 +52,21 @@ const ProductDetailModal = ({ isOpen, onClose, product, onAddToCart, onCheckStoc
 
         {/* Image Section */}
         <div className="w-full md:w-1/2 flex flex-col bg-gray-50 border-b md:border-b-0 md:border-r border-gray-100 overflow-hidden">
-          <div className="relative h-[300px] sm:h-[400px] md:h-full overflow-hidden group">
-            <img
-              src={productImages[activeImageIndex]}
-              alt={`${product.name} ${activeImageIndex + 1}`}
-              className="w-full h-full object-cover transition-all duration-700"
-            />
+          <div className="relative aspect-square sm:aspect-[4/3] md:aspect-auto md:h-full overflow-hidden group">
+            <div 
+              className="flex h-full transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+              style={{ transform: `translateX(-${activeImageIndex * 100}%)` }}
+            >
+              {productImages.map((img, idx) => (
+                <div key={idx} className="w-full h-full flex-shrink-0 overflow-hidden">
+                  <img
+                    src={img}
+                    alt={`${product.name} ${idx + 1}`}
+                    className={`w-full h-full object-cover transition-transform duration-1000 ${activeImageIndex === idx ? "scale-100" : "scale-110"}`}
+                  />
+                </div>
+              ))}
+            </div>
             
             {/* Navigation Arrows for Gallery */}
             {productImages.length > 1 && (
@@ -59,11 +88,13 @@ const ProductDetailModal = ({ isOpen, onClose, product, onAddToCart, onCheckStoc
 
             {/* Image Indicator Dots */}
             {productImages.length > 1 && (
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
                 {productImages.map((_, idx) => (
-                  <div 
+                  <button 
                     key={idx} 
-                    className={`h-1 rounded-full transition-all duration-300 ${activeImageIndex === idx ? "w-5 bg-primary" : "w-1 bg-white/70"}`}
+                    onClick={(e) => { e.stopPropagation(); setActiveImageIndex(idx); }}
+                    className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${activeImageIndex === idx ? "w-8 bg-primary shadow-[0_0_10px_rgba(0,191,98,0.5)]" : "w-2 bg-white/40 hover:bg-white/70"}`}
+                    aria-label={`Go to image ${idx + 1}`}
                   />
                 ))}
               </div>
@@ -77,7 +108,7 @@ const ProductDetailModal = ({ isOpen, onClose, product, onAddToCart, onCheckStoc
                 <button
                   key={idx}
                   onClick={() => setActiveImageIndex(idx)}
-                  className={`relative flex-shrink-0 w-14 h-14 rounded-xl overflow-hidden border-2 transition-all snap-start
+                  className={`relative flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden border-2 transition-all snap-start
                     ${activeImageIndex === idx ? "border-primary scale-105 shadow-md" : "border-gray-50 opacity-60 hover:opacity-100"}`}
                 >
                   <img src={img} alt="thumb" className="w-full h-full object-cover" />

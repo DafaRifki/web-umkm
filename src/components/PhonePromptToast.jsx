@@ -50,7 +50,7 @@ const PhonePromptToast = ({ isOpen, onClose, onSubmit }) => {
           </div>
           <div className="mt-3 flex items-center gap-1.5 text-[10px] text-gray-400">
             <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-            Data Anda tersimpan aman selama 24 jam.
+            Data Anda tersimpan aman selama 1 jam.
           </div>
         </form>
       </div>

@@ -4,7 +4,7 @@ import { products, comingSoon, BUSINESS_PHONE_NUMBER } from "./data";
 import { formatRupiah, getStorageWithExpiry, setStorageWithExpiry } from "./utils/helpers";
 import { Clock } from "lucide-react";
 
-const STORAGE_EXPIRY_MS = 24 * 60 * 60 * 1000; // 24 Jam
+const STORAGE_EXPIRY_MS = 1 * 60 * 60 * 1000; // 1 Jam
 
 // Import Components
 import Navbar from "./components/Navbar";

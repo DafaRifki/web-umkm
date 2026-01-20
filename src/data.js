@@ -3,11 +3,13 @@ export const products = [
     id: 1,
     name: "Trapped",
     tagline: "tough isn’t silent, tough is honest",
-    price: 250000,
+    price: 120000,
     images: ["/assets/product1.webp", "/assets/detail_product1.webp"],
-    description: "I know you're not okay.There are days when you withdraw, stay silent, and carry everything alone.",
-    fullDescription: "I know you're not okay.There are days when you withdraw, stay silent, and carry everything alone. And I understand it's not because you don't care, but because you're fighting a battle inside that no one else can see. Ididn't come to be your hero. I don't have the answers to your pain. I can't fix what even you can't fully explain. But what I can do is stay. Stay by your side. To listen. To be here when things get too heavy to hold alone.",
-  }
+    description:
+      "I know you're not okay.There are days when you withdraw, stay silent, and carry everything alone.",
+    fullDescription:
+      "I know you're not okay.There are days when you withdraw, stay silent, and carry everything alone. And I understand it's not because you don't care, but because you're fighting a battle inside that no one else can see. Ididn't come to be your hero. I don't have the answers to your pain. I can't fix what even you can't fully explain. But what I can do is stay. Stay by your side. To listen. To be here when things get too heavy to hold alone.",
+  },
 ];
 
 export const comingSoon = [
@@ -22,7 +24,7 @@ export const comingSoon = [
     name: "Product 3",
     image: "/assets/detail_product3.webp",
     releaseDate: "Coming Soon",
-  }
+  },
 ];
 
-export const BUSINESS_PHONE_NUMBER = "6288225839303";
+export const BUSINESS_PHONE_NUMBER = "6288975616762";
